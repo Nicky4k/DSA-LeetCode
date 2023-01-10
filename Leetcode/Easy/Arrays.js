@@ -42,16 +42,16 @@ function mapTwoSum(nums, target) {
  * 3. Remove Duplicates from Sorted Array
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
-const arr = [1, 2];
+const arr = [1, 2, 2];
 function removeDupsDromSortedArray(nums) {
   let sticky = 0;
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < nums.length - 1; i++) {
     if (nums[i] !== nums[i + 1]) {
       sticky++;
       nums[sticky] = nums[i + 1];
     }
   }
-  nums.length = sticky;
+  nums.length = sticky + 1;
   console.log(nums);
 }
 removeDupsDromSortedArray(arr);
