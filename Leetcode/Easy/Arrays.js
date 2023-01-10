@@ -43,5 +43,6 @@ console.log(mapTwoSum([2, 7, 11, 15], 9));
  * Remove Duplicates from Sorted Array
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
-function removeDupsDromSortedArray() {}
-removeDupsDromSortedArray();
+const arr = [1, 2, 3, 4, 5, 6, 6, 7, 7, 8];
+function removeDupsDromSortedArray(arr) {}
+removeDupsDromSortedArray(arr);
