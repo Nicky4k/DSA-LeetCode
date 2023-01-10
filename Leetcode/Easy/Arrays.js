@@ -37,3 +37,10 @@ function mapTwoSum(nums, target) {
   console.log(map);
 }
 console.log(mapTwoSum([2, 7, 11, 15], 9));
+``;
+
+/**
+ * Remove Duplicates from Sorted Array
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ */
+function removeDupsDromSortedArray() {}
