@@ -54,4 +54,24 @@ function removeDupsDromSortedArray(nums) {
   nums.length = sticky + 1;
   console.log(nums);
 }
-removeDupsDromSortedArray(arr);
+// removeDupsDromSortedArray(arr);
+
+/**
+ * 4. Remove Element
+ * https://leetcode.com/problems/remove-element/
+ */
+function removeElement(nums, val) {
+  let sticky = 0;
+  for (let i = 0; i <= nums.length - 1; i++) {
+    if (nums[sticky] !== val) {
+      sticky++;
+    } else {
+      for (let j = sticky; j <= nums.length - 1; j++) {
+        nums[j] = nums[j + 1];
+      }
+    }
+  }
+  nums.length = sticky;
+  console.log(sticky, nums);
+}
+removeElement([3, 2, 2, 3], 3);
