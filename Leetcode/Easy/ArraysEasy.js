@@ -188,3 +188,33 @@ var merge = function (nums1, m, nums2, n) {
   nums1.splice(m, n, ...nums2);
   nums1.sort((a, b) => a - b);
 };
+
+/**
+ * 8. Convert Sorted Array to Binary Search Tree
+ * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ *
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function (nums) {
+  if (left > right) return null;
+
+  let mid = Math.floor((left + right) / 2);
+  let root = new TreeNode(nums[mid]);
+
+  root.left = sortedArrayToBST(nums, left, mid - 1);
+  root.right = sortedArrayToBST(nums, mid + 1, right);
+
+  return root;
+};
+
+// sortedArrayToBST([-10, -3, 0, 5, 9]);
+// sortedArrayToBST([1, 3]);
