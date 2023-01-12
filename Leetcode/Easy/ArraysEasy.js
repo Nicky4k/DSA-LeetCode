@@ -218,3 +218,11 @@ var sortedArrayToBST = function (nums) {
 
 // sortedArrayToBST([-10, -3, 0, 5, 9]);
 // sortedArrayToBST([1, 3]);
+
+/**
+ * 9. Pascal's Triangle
+ * https://leetcode.com/problems/pascals-triangle/
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {};
