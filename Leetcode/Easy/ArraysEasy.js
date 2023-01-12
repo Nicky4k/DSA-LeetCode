@@ -225,4 +225,19 @@ var sortedArrayToBST = function (nums) {
  * @param {number} numRows
  * @return {number[][]}
  */
-var generate = function (numRows) {};
+var generate = function (numRows, i = 1, res = [[1]]) {
+  if (numRows === i) return [[1]];
+  let temp = [];
+  for (let j = 0; j <= i; j++) {
+    if (j === 0 || j === i) {
+      temp[j] = 1;
+    } else {
+      temp[j] = res[i - 1][j - 1] + res[i - 1][j];
+    }
+  }
+  res.push(temp);
+  generate(numRows, ++i, res);
+  return res;
+};
+
+console.log(generate(1));
