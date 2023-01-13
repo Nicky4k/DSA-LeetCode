@@ -226,7 +226,7 @@ var sortedArrayToBST = function (nums) {
  * @return {number[][]}
  */
 var generate = function (numRows, i = 1, res = [[1]]) {
-  if (numRows === i) return [[1]];
+  if (numRows === i) return res;
   let temp = [];
   for (let j = 0; j <= i; j++) {
     if (j === 0 || j === i) {
@@ -236,8 +236,70 @@ var generate = function (numRows, i = 1, res = [[1]]) {
     }
   }
   res.push(temp);
-  generate(numRows, ++i, res);
-  return res;
+  return generate(numRows, ++i, res);
 };
 
-console.log(generate(1));
+// console.log(generate(10));
+
+/**
+ * 10. Pascal's Triangle II
+ * https://leetcode.com/problems/pascals-triangle-ii/
+ */
+
+var getRow = function (rowIndex) {
+  let res = [1];
+  let temp = [];
+  for (let i = 0; i <= rowIndex; i++) {
+    temp = [];
+    for (j = 0; j <= i; j++) {
+      if (j === 0 || j === i) {
+        temp[j] = 1;
+      } else {
+        temp[j] = res[j - 1] + res[j];
+      }
+    }
+    res = temp;
+  }
+  return res;
+};
+// console.log(getRow(3));
+
+/**
+ * 11. Best Time to Buy and Sell Stock
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  let maxProfit = 0;
+  let minPrice = prices[0];
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] - minPrice > maxProfit) {
+      maxProfit = prices[i] - minPrice;
+    }
+    if (prices[i] < minPrice) minPrice = prices[i];
+  }
+  return maxProfit;
+};
+// console.log(maxProfit([7, 1, 5, 3, 6, 4]));
+
+/**
+ * 12. Single Number
+ * https://leetcode.com/problems/single-number/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (obj[nums[i]]) {
+      obj[nums[i]]++;
+    } else {
+      obj[nums[i]] = 1;
+    }
+  }
+  for (const key in obj) {
+    if (obj[key] === 1) return key;
+  }
+};
+console.log(singleNumber([4, 1, 2, 1, 2]));
