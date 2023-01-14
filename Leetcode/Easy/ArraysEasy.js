@@ -204,7 +204,7 @@ var merge = function (nums1, m, nums2, n) {
  * @param {number[]} nums
  * @return {TreeNode}
  */
-var sortedArrayToBST = function (nums) {
+var sortedArrayToBST = function (nums, left = 0, right = nums.length - 1) {
   if (left > right) return null;
 
   let mid = Math.floor((left + right) / 2);
