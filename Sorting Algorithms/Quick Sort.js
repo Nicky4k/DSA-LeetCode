@@ -2,8 +2,8 @@ const arr = [4, 600, 2, 5, 7, -9, 1, 3];
 function quickSort(arr, left = 0, right = arr.length - 1) {
   if (right > left) {
     const pivotIdx = pivot(arr, left, right);
-    let leftSort = quickSort(arr, left, pivotIdx - 1);
-    let rightSort = quickSort(arr, pivotIdx + 1, right);
+    quickSort(arr, left, pivotIdx - 1);
+    quickSort(arr, pivotIdx + 1, right);
   }
 }
 console.log(arr);
