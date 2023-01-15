@@ -302,4 +302,69 @@ var singleNumber = function (nums) {
     if (obj[key] === 1) return key;
   }
 };
-console.log(singleNumber([4, 1, 2, 1, 2]));
+// console.log(singleNumber([4, 1, 2, 1, 2]));
+
+/**
+ * 13. Majority Element
+ * https://leetcode.com/problems/majority-element/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function (nums) {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    obj[nums[i]] = obj[nums[i]] ? ++obj[nums[i]] : 1;
+  }
+
+  let res = 0;
+  let max = 0;
+  for (let key in obj) {
+    if (obj[key] > max) {
+      res = key;
+      max = obj[key];
+    }
+  }
+  console.log(res);
+};
+
+// majorityElement([3, 3]);
+// majorityElement([2, 2, 99, 99, 99, 2, 2]);
+
+/**
+ * 14. Check for Majority Element in a sorted array
+ * https://www.geeksforgeeks.org/check-for-majority-element-in-a-sorted-array/
+ */
+function majoritySortedArr(arr) {
+  let count = 1;
+  let element = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === element) {
+      count++;
+      if (count > arr.length / 2) {
+        console.log(element);
+        return;
+      }
+    } else {
+      element = arr[i];
+      count = 1;
+    }
+  }
+}
+// majoritySortedArr([1, 2, 2, 2, 2, 3, 10]);
+
+/**
+ * 15. Find Min and Max in array using Reduce
+ */
+
+function minMax(arr) {
+  const res = arr.reduce(
+    (acc, curr, i, arr) => {
+      acc.min = acc.min < curr ? acc.min : curr;
+      acc.max = acc.max > curr ? acc.max : curr;
+      return acc;
+    },
+    { min: arr[0], max: arr[0] }
+  );
+  console.log(res);
+}
+minMax([2, 4, 6, 8]); //{min: 2, max: 8}
