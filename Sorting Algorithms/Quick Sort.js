@@ -31,3 +31,8 @@ function swap(arr, a, b) {
   arr[a] = arr[b];
   arr[b] = temp;
 }
+
+// swap using destructuring
+function swapDestucture(arr, a, b) {
+  [arr[b], arr[a]] = [arr[a], arr[b]];
+}
