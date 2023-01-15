@@ -42,7 +42,7 @@ function mapTwoSum(nums, target) {
  * 3. Remove Duplicates from Sorted Array
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
-const arr = [1, 2, 2];
+// const arr = [1, 2, 2];
 function removeDupsDromSortedArray(nums) {
   let sticky = 0;
   for (let i = 0; i < nums.length - 1; i++) {
@@ -367,4 +367,101 @@ function minMax(arr) {
   );
   console.log(res);
 }
-minMax([2, 4, 6, 8]); //{min: 2, max: 8}
+// minMax([2, 4, 6, 8]);
+
+/**
+ * 16. Contains Duplicate
+ * https://leetcode.com/problems/contains-duplicate/
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums, j = nums.length) {
+  let obj = {};
+  for (let i = 0; i < j; i++) {
+    if (obj[nums[i]]) {
+      return true;
+    } else {
+      obj[nums[i]] = 1;
+    }
+  }
+  return false;
+};
+
+// console.log(containsDuplicate([1, 2, 3, 1]));
+// console.log(containsDuplicate([1, 2, 3, 4]));
+
+// 17. using lastIndexOf
+function dupesIndex(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (i !== arr.lastIndexOf(arr[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// console.log(dupesIndex([1, 2, 3, 1]));
+// console.log(dupesIndex([1, 2, 3, 4]));
+
+/**
+ * 18. Contains Duplicate II
+ * https://leetcode.com/problems/contains-duplicate-ii/
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function (nums, k) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) {
+      if (Math.abs(map.get(nums[i]) - i) <= k) {
+        return true;
+      }
+    }
+    map.set(nums[i], i);
+  }
+  return false;
+};
+// containsNearbyDuplicate([1, 2, 3, 1], 3);
+// console.log(containsNearbyDuplicate([1, 2, 1, 3, 1, 2, 3], 2));
+
+/**
+ * 19. Summary Ranges
+ * https://leetcode.com/problems/summary-ranges/
+ * @param {number[]} nums
+ * @return {string[]}
+ *  Input: nums = [0,1,2,4,5,7]
+    Output: ["0->2","4->5","7"]
+    Explanation: The ranges are:
+    [0,2] --> "0->2"
+    [4,5] --> "4->5"
+    [7,7] --> "7"
+ */
+var summaryRanges = function (nums) {
+  let string = [];
+  let slug = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i + 1] - nums[i] === 1) {
+      slug.push(nums[i]);
+    } else {
+      if (slug.length > 0) {
+        slug.push(nums[i]);
+        string.push(slug[0] + "->" + slug[slug.length - 1]);
+        slug.length = 0;
+      } else {
+        string.push(nums[i] + "");
+      }
+    }
+  }
+  console.log(string);
+};
+summaryRanges([0, 1, 2, 4, 5, 7]);
+summaryRanges([0, 2, 3, 4, 6, 8, 9]);
+
+// Input: nums = [0,2,3,4,6,8,9]
+// Output: ["0","2->4","6","8->9"]
+// Explanation: The ranges are:
+// [0,0] --> "0"
+// [2,4] --> "2->4"
+// [6,6] --> "6"
+// [8,9] --> "8->9"
