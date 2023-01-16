@@ -455,13 +455,4 @@ var summaryRanges = function (nums) {
   }
   console.log(string);
 };
-summaryRanges([0, 1, 2, 4, 5, 7]);
-summaryRanges([0, 2, 3, 4, 6, 8, 9]);
-
-// Input: nums = [0,2,3,4,6,8,9]
-// Output: ["0","2->4","6","8->9"]
-// Explanation: The ranges are:
-// [0,0] --> "0"
-// [2,4] --> "2->4"
-// [6,6] --> "6"
-// [8,9] --> "8->9"
+// summaryRanges([0, 2, 3, 4, 6, 8, 9]);
