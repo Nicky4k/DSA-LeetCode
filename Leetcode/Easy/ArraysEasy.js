@@ -456,3 +456,83 @@ var summaryRanges = function (nums) {
   console.log(string);
 };
 // summaryRanges([0, 2, 3, 4, 6, 8, 9]);
+
+/**
+ * 20. Missing Number
+ * https://leetcode.com/problems/missing-number/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function (nums) {
+  for (let i = 0; i <= nums.length; i++) {
+    if (!nums.includes(i)) return i;
+  }
+};
+// missingNumber([3, 0, 1]);
+
+function missingNumberObj(nums) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], 1);
+  }
+  for (let i = 0; i <= nums.length; i++) {
+    if (!map.has(i)) return i;
+  }
+}
+// missingNumberObj([3, 0, 1]);
+
+/**
+ * 21. Move Zeroes
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function (nums) {
+  let sticky = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[sticky] = nums[i];
+      sticky++;
+    }
+  }
+  for (i = sticky; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+};
+moveZeroes([0, 1, 0, 3, 12]);
+
+/**
+ * 22. Range Sum Query - Immutable
+ * https://leetcode.com/problems/range-sum-query-immutable/
+ * @param {number[]} nums
+ */
+class NumArray {
+  constructor(nums) {
+    this.nums = nums;
+  }
+}
+
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function (arr) {
+  [left, right] = arr;
+  const sum = this.nums.reduce((acc, curr, i, arr) => {
+    if (i >= left && i <= right) {
+      acc += curr;
+    }
+    return acc;
+  }, 0);
+  console.log(sum);
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(left,right)
+ */
+const newNums = new NumArray([-2, 0, 3, -5, 2, -1]);
+newNums.sumRange([0, 2]);
+newNums.sumRange([0, 5]);
+//, [0, 2], [2, 5], [0, 5]
