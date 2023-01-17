@@ -524,8 +524,9 @@ class NumArray {
  */
 NumArray.prototype.sumRange = function (arr) {
   [left, right] = arr;
-  if (left < 1) console.log(this.preSum[right]);
-  return this.preSum[right] - this.preSum[left - 1];
+  return left < 1
+    ? this.preSum[right]
+    : this.preSum[right] - this.preSum[left - 1];
 };
 
 /**
@@ -534,6 +535,26 @@ NumArray.prototype.sumRange = function (arr) {
  * var param_1 = obj.sumRange(left,right)
  */
 const newNums = new NumArray([1, 2, 3, 4, 5, 6]);
-newNums.sumRange([0, 2]);
-newNums.sumRange([0, 5]);
+// newNums.sumRange([0, 2]);
+// newNums.sumRange([0, 5]);
 //, [0, 2], [2, 5], [0, 5]
+
+/**
+ * 23.Intersection of Two Arrays
+ * https://leetcode.com/problems/intersection-of-two-arrays/
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersection = function (nums1, nums2) {
+  let map = new Map();
+  for (let i = 0; i < nums1.length; i++) {
+    if (!map.has(nums1[i])) map.set(nums1[i]);
+  }
+  let mapRes = new Map();
+  for (let i = 0; i < nums2.length; i++) {
+    if (map.has(nums2[i])) mapRes.set(nums2[i]);
+  }
+  console.log(Array.from(mapRes.keys()));
+};
+intersection([1, 2, 2, 1], [2, 2]);
