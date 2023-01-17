@@ -508,6 +508,12 @@ moveZeroes([0, 1, 0, 3, 12]);
 class NumArray {
   constructor(nums) {
     this.nums = nums;
+    this.preSum = [];
+    let sum = 0;
+    for (let i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      this.preSum[i] = sum;
+    }
   }
 }
 
@@ -518,13 +524,8 @@ class NumArray {
  */
 NumArray.prototype.sumRange = function (arr) {
   [left, right] = arr;
-  const sum = this.nums.reduce((acc, curr, i, arr) => {
-    if (i >= left && i <= right) {
-      acc += curr;
-    }
-    return acc;
-  }, 0);
-  console.log(sum);
+  if (left < 1) console.log(this.preSum[right]);
+  return this.preSum[right] - this.preSum[left - 1];
 };
 
 /**
@@ -532,7 +533,7 @@ NumArray.prototype.sumRange = function (arr) {
  * var obj = new NumArray(nums)
  * var param_1 = obj.sumRange(left,right)
  */
-const newNums = new NumArray([-2, 0, 3, -5, 2, -1]);
+const newNums = new NumArray([1, 2, 3, 4, 5, 6]);
 newNums.sumRange([0, 2]);
 newNums.sumRange([0, 5]);
 //, [0, 2], [2, 5], [0, 5]
