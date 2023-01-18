@@ -557,4 +557,84 @@ var intersection = function (nums1, nums2) {
   }
   console.log(Array.from(mapRes.keys()));
 };
-intersection([1, 2, 2, 1], [2, 2]);
+// intersection([1, 2, 2, 1], [2, 2]);
+
+/**
+ * 24. Intersection of Two Arrays II
+ * https://leetcode.com/problems/intersection-of-two-arrays-ii/
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function (nums1, nums2) {
+  let map = new Map();
+  for (let i = 0; i < nums1.length; i++) {
+    map.has(nums1[i])
+      ? map.set(nums1[i], map.get(nums1[i]) + 1)
+      : map.set(nums1[i], 1);
+  }
+
+  let res = [];
+  for (let i = 0; i < nums2.length; i++) {
+    if (map.get(nums2[i])) {
+      map.set(nums2[i], map.get(nums2[i]) - 1);
+      res.push(nums2[i]);
+    }
+  }
+  console.log(res);
+};
+
+// intersect([1, 2, 2, 1], [2, 2]);
+// intersect([4, 9, 5], [9, 4, 9, 8, 4]);
+
+/**
+ * 25. Third Maximum Number
+ * https://leetcode.com/problems/third-maximum-number/
+ * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not   exist, return the maximum number.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function (nums) {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    obj[nums[i]] ? ++obj[nums[i]] : (obj[nums[i]] = 1);
+  }
+  let arr = Object.keys(obj);
+  let newArr = arr.map((el) => +el);
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < newArr.length - i; j++) {
+      if (newArr[j] > newArr[j + 1]) {
+        let temp = newArr[j];
+        newArr[j] = newArr[j + 1];
+        newArr[j + 1] = temp;
+      }
+    }
+  }
+  const res =
+    newArr.length > 2 ? newArr[newArr.length - 3] : newArr[newArr.length - 1];
+  console.log(res);
+};
+// thirdMax([3, 2, 1]);
+// thirdMax([1, 2]);
+// thirdMax([2, 2, 3, 1]);
+// thirdMax([-2147483648, 1, 1]);
+// thirdMax([
+//   3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8,
+//   5, 6,
+// ]);
+
+function thirdMax2ndSolution(nums) {
+  let sortedNums = nums.sort((a, b) => b - a);
+  let set = new Set(sortedNums);
+  let result = [];
+  set.forEach((val) => result.push(val));
+  console.log(result.length > 2 ? result[2] : result[0]);
+}
+thirdMax2ndSolution([2, 2, 3, 1]);
+thirdMax2ndSolution([3, 2, 1]);
+thirdMax2ndSolution([2, 1]);
+thirdMax2ndSolution([-2147483648, 1, 1]);
+thirdMax2ndSolution([
+  3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8,
+  5, 6,
+]);
