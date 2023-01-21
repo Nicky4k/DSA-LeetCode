@@ -638,3 +638,86 @@ function thirdMax2ndSolution(nums) {
 //   3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8,
 //   5, 6,
 // ]);
+
+/**
+ * 26. Find All Numbers Disappeared in an Array
+ * https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function (nums) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (!map.has(nums[i])) map.set(nums[i], true);
+  }
+  let res = [];
+  for (let i = 1; i <= nums.length; i++) {
+    if (!map.has(i)) res.push(i);
+  }
+  return res;
+};
+// console.log(findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]));
+
+var findDisappearedNumbers2 = function (nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (!nums.includes(i + 1)) res.push(i + 1);
+  }
+  return res;
+};
+// console.log(findDisappearedNumbers2([4, 3, 2, 7, 8, 2, 3, 1]));
+
+var findDisappearedNumbers3 = function (nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    const pointer = Math.abs(nums[i]) - 1;
+    if (nums[pointer] > 0) nums[pointer] *= -1;
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 0) res.push(i + 1);
+  }
+  return res;
+};
+// console.log(findDisappearedNumbers3([4, 3, 2, 7, 8, 2, 3, 1]));
+
+/**
+ * 27. Assign Cookies
+ * https://leetcode.com/problems/assign-cookies/
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var findContentChildren = function (g, s) {
+  g.sort((a, b) => b - a);
+  s.sort((a, b) => b - a);
+  // console.log(g);
+  // console.log(s);
+  let curr = 0;
+  let res = 0;
+  for (let i = 0; i < g.length; i++) {
+    if (curr < s.length && g[i] <= s[curr]) {
+      res++;
+      curr++;
+    }
+  }
+  return res;
+};
+// console.log(findContentChildren([1, 2], [1, 2, 3]));
+
+/**
+ * 28. Island Perimeter
+ * https://leetcode.com/problems/island-perimeter/
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function (grid) {
+  return grid;
+};
+console.log(
+  islandPerimeter([
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ])
+);
