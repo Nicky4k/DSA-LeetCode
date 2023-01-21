@@ -630,11 +630,11 @@ function thirdMax2ndSolution(nums) {
   set.forEach((val) => result.push(val));
   console.log(result.length > 2 ? result[2] : result[0]);
 }
-thirdMax2ndSolution([2, 2, 3, 1]);
-thirdMax2ndSolution([3, 2, 1]);
-thirdMax2ndSolution([2, 1]);
-thirdMax2ndSolution([-2147483648, 1, 1]);
-thirdMax2ndSolution([
-  3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8,
-  5, 6,
-]);
+// thirdMax2ndSolution([2, 2, 3, 1]);
+// thirdMax2ndSolution([3, 2, 1]);
+// thirdMax2ndSolution([2, 1]);
+// thirdMax2ndSolution([-2147483648, 1, 1]);
+// thirdMax2ndSolution([
+//   3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8,
+//   5, 6,
+// ]);
