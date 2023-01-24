@@ -709,6 +709,9 @@ var findContentChildren = function (g, s) {
  * https://leetcode.com/problems/island-perimeter/
  * @param {number[][]} grid
  * @return {number}
+ * 
+ * Input: grid = [[1,0]]
+   Output: 4
  */
 var islandPerimeter = function (grid) {
   return grid;
