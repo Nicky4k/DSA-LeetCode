@@ -714,13 +714,68 @@ var findContentChildren = function (g, s) {
    Output: 4
  */
 var islandPerimeter = function (grid) {
-  return grid;
+  let res = 0;
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] == 0) continue;
+      res += 4;
+      if (grid[i - 1]?.[j]) res -= 1;
+      if (grid[i + 1]?.[j]) res -= 1;
+      if (grid[i]?.[j - 1]) res -= 1;
+      if (grid[i]?.[j + 1]) res -= 1;
+    }
+  }
+  return res;
 };
-console.log(
-  islandPerimeter([
-    [0, 1, 0, 0],
-    [1, 1, 1, 0],
-    [0, 1, 0, 0],
-    [1, 1, 0, 0],
-  ])
-);
+// console.log(islandPerimeter([[0, 1]]));
+// console.log(
+//   islandPerimeter([
+//     [0, 1, 0, 0],
+//     [1, 1, 1, 0],
+//     [0, 1, 0, 0],
+//     [1, 1, 0, 0],
+//   ])
+// );
+
+/**
+ * 29. Max Consecutive Ones
+ * https://leetcode.com/problems/max-consecutive-ones/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function (nums) {
+  let maxCount = 0;
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      count++;
+    } else {
+      count = 0;
+    }
+    if (count > maxCount) maxCount = count;
+  }
+  console.log(maxCount);
+};
+
+// findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1, 1]);
+
+/**
+ * 30. Teemo Attacking
+ * https://leetcode.com/problems/teemo-attacking/
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var findPoisonedDuration = function (timeSeries, duration) {
+  let jacked = 0;
+  for (let i = 0; i < timeSeries.length; i++) {
+    if (timeSeries[i + 1] - timeSeries[i] < duration) {
+      jacked += timeSeries[i + 1] - timeSeries[i];
+    } else {
+      jacked += duration;
+    }
+  }
+  console.log(jacked);
+};
+findPoisonedDuration([1, 4], 2);
+findPoisonedDuration([1, 2, 3, 4, 5], 5);
