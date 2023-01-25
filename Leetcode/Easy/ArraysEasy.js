@@ -769,11 +769,10 @@ var findMaxConsecutiveOnes = function (nums) {
 var findPoisonedDuration = function (timeSeries, duration) {
   let jacked = 0;
   for (let i = 0; i < timeSeries.length; i++) {
-    if (timeSeries[i + 1] - timeSeries[i] < duration) {
-      jacked += timeSeries[i + 1] - timeSeries[i];
-    } else {
-      jacked += duration;
-    }
+    jacked +=
+      timeSeries[i + 1] - timeSeries[i] < duration
+        ? timeSeries[i + 1] - timeSeries[i]
+        : duration;
   }
   console.log(jacked);
 };
