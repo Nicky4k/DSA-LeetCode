@@ -803,16 +803,23 @@ var nextGreaterElement = function (nums1, nums2) {
 // nextGreaterElement([4, 1, 2], [1, 3, 4, 2]);
 
 var nextGreaterElementStacked = function (nums1, nums2) {
+  let map = new Map();
+  let stack = [];
+  for (let i = nums2.length - 1; i >= 0; i--) {
+    while (stack.length > 0 && stack[stack.length - 1] <= nums2[i]) {
+      stack.pop();
+    }
+    if (stack.length === 0) {
+      map.set(nums2[i], -1);
+      stack.push(nums2[i]);
+    } else {
+      map.set(nums2[i], stack[stack.length - 1]);
+      stack.push(nums2[i]);
+    }
+  }
   let res = [];
   for (let i = 0; i < nums1.length; i++) {
-    let temp = 0;
-    for (j = nums2.indexOf(nums1[i]); j < nums2.length; j++) {
-      if (nums2[j] > nums1[i]) {
-        temp = nums2[j];
-        break;
-      }
-    }
-    res.push(temp ? temp : -1);
+    res.push(map.get(nums1[i]));
   }
   console.log(res);
 };
