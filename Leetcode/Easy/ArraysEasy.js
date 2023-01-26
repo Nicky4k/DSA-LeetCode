@@ -831,4 +831,28 @@ var nextGreaterElementStacked = function (nums1, nums2) {
  * @param {string[]} words
  * @return {string[]}
  */
-var findWords = function (words) {};
+var findWords = function (words) {
+  const keyboard = {
+    1: "qwertyuiop",
+    2: "asdfghjkl",
+    3: "zxcvbnm",
+  };
+  let res = [];
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 1; j < 4; j++) {
+      if (keyboard[j].includes(words[i].toLowerCase().split("")[0])) {
+        const filteredWd = words[i]
+          .toLowerCase()
+          .split("")
+          .filter((wd) => keyboard[j].includes(wd));
+        if (words[i].length === filteredWd.length) {
+          res.push(words[i]);
+          break;
+        }
+      }
+    }
+  }
+  console.log(res);
+};
+
+findWords(["Hello", "Alaska", "Dad", "Peace"]);
