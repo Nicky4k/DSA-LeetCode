@@ -800,4 +800,20 @@ var nextGreaterElement = function (nums1, nums2) {
   }
   console.log(res);
 };
-nextGreaterElement([4, 1, 2], [1, 3, 4, 2]);
+// nextGreaterElement([4, 1, 2], [1, 3, 4, 2]);
+
+var nextGreaterElementStacked = function (nums1, nums2) {
+  let res = [];
+  for (let i = 0; i < nums1.length; i++) {
+    let temp = 0;
+    for (j = nums2.indexOf(nums1[i]); j < nums2.length; j++) {
+      if (nums2[j] > nums1[i]) {
+        temp = nums2[j];
+        break;
+      }
+    }
+    res.push(temp ? temp : -1);
+  }
+  console.log(res);
+};
+nextGreaterElementStacked([4, 1, 2], [1, 3, 4, 2]);
