@@ -817,10 +817,18 @@ var nextGreaterElementStacked = function (nums1, nums2) {
       stack.push(nums2[i]);
     }
   }
-  let res = [];
+  stack = [];
   for (let i = 0; i < nums1.length; i++) {
-    res.push(map.get(nums1[i]));
+    stack.push(map.get(nums1[i]));
   }
-  console.log(res);
+  console.log(stack);
 };
-nextGreaterElementStacked([4, 1, 2], [1, 3, 4, 2]);
+// nextGreaterElementStacked([4, 1, 2], [1, 3, 4, 2]);
+
+/**
+ * 32. Keyboard Row
+ * https://leetcode.com/problems/keyboard-row/
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findWords = function (words) {};
