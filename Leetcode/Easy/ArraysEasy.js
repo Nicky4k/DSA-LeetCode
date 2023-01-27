@@ -855,7 +855,7 @@ var findWords = function (words) {
   console.log(res);
 };
 
-findWords(["Hello", "Alaska", "Dad", "Peace"]);
+// findWords(["Hello", "Alaska", "Dad", "Peace"]);
 
 /**
  * 33. Relative Ranks
@@ -863,4 +863,49 @@ findWords(["Hello", "Alaska", "Dad", "Peace"]);
  * @param {number[]} score
  * @return {string[]}
  */
-var findRelativeRanks = function (score) {};
+var findRelativeRanks = function (score) {
+  let map = new Map();
+  let skore = [...score];
+  for (let i = 0; i < skore.length; i++) {
+    for (j = 0; j < skore.length - i; j++) {
+      if (skore[j] > skore[j + 1]) {
+        let temp = skore[j];
+        skore[j] = skore[j + 1];
+        skore[j + 1] = temp;
+      }
+    }
+    map.set(skore[skore.length - 1 - i], i + 1);
+  }
+  let res = [];
+  for (let i = 0; i < skore.length; i++) {
+    switch (map.get(score[i])) {
+      case 1:
+        res.push("Gold Medal");
+
+        break;
+      case 2:
+        res.push("Silver Medal");
+
+        break;
+      case 3:
+        res.push("Bronze Medal");
+
+        break;
+
+      default:
+        res.push(map.get(score[i]));
+        break;
+    }
+  }
+  console.log(res);
+};
+// findRelativeRanks([10, 3, 8, 9, 4]);
+
+/**
+ * 34. Array Partition
+ * https://leetcode.com/problems/array-partition/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var arrayPairSum = function (nums) {};
+arrayPairSum([1, 4, 3, 2]);
