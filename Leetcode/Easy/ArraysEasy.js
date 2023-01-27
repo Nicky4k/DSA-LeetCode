@@ -915,5 +915,34 @@ var arrayPairSum = function (nums) {
   }
   console.log(sum);
 };
-arrayPairSum([1, 4, 3, 2]);
-arrayPairSum([6214, -2290, 2833, -7908]);
+// arrayPairSum([1, 4, 3, 2]);
+// arrayPairSum([6214, -2290, 2833, -7908]);
+
+/**
+ * 35. Reshape the Matrix
+ * https://leetcode.com/problems/reshape-the-matrix/
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+var matrixReshape = function (mat, r, c) {
+  let res = [];
+  for (let i = 0; i < mat.length; i++) {
+    res.push(...mat[i]);
+  }
+
+  let op = [];
+  for (let i = 0; i < res.length; i += r) {
+    op.push(res.slice(i, i + r));
+  }
+  console.log(op);
+};
+matrixReshape(
+  [
+    [1, 2],
+    [3, 4],
+  ],
+  1,
+  4
+);
