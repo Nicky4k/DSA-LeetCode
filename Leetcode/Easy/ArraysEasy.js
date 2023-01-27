@@ -856,3 +856,11 @@ var findWords = function (words) {
 };
 
 findWords(["Hello", "Alaska", "Dad", "Peace"]);
+
+/**
+ * 33. Relative Ranks
+ * https://leetcode.com/problems/relative-ranks/
+ * @param {number[]} score
+ * @return {string[]}
+ */
+var findRelativeRanks = function (score) {};
