@@ -927,22 +927,56 @@ var arrayPairSum = function (nums) {
  * @return {number[][]}
  */
 var matrixReshape = function (mat, r, c) {
-  let res = [];
+  let res = mat.flat();
+
   for (let i = 0; i < mat.length; i++) {
     res.push(...mat[i]);
   }
+  if (c * r !== res.length || (c === 1 && r === 1)) {
+    console.log(...mat);
+    return;
+  }
 
   let op = [];
-  for (let i = 0; i < res.length; i += r) {
-    op.push(res.slice(i, i + r));
+  for (let i = 0; i < r * c; i += c) {
+    op.push(res.slice(i, i + c));
   }
-  console.log(op);
+  console.log(...op);
 };
-matrixReshape(
-  [
-    [1, 2],
-    [3, 4],
-  ],
-  1,
-  4
-);
+// matrixReshape(
+//   [
+//     [1, 2],
+//     [3, 4],
+//   ],
+//   1,
+//   4
+// );
+// matrixReshape(
+//   [
+//     [1, 2],
+//     [3, 4],
+//   ],
+//   2,
+//   4
+// );
+// matrixReshape(
+//   [
+//     [1, 2],
+//     [3, 4],
+//   ],
+//   4,
+//   1
+// );
+// matrixReshape([[1, 2, 3, 4]], 2, 2);
+// matrixReshape([[1, 2]], 1, 1);
+
+/**
+ * 36. Distribute Candies
+ * https://leetcode.com/problems/distribute-candies/
+ * @param {number[]} candyType
+ * @return {number}
+ */
+var distributeCandies = function (candyType) {
+  console.log(Math.min([...new Set(candyType)].length, candyType.length / 2));
+};
+distributeCandies([1, 1, 2, 2, 3, 3]);
