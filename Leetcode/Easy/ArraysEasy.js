@@ -979,4 +979,28 @@ var matrixReshape = function (mat, r, c) {
 var distributeCandies = function (candyType) {
   console.log(Math.min([...new Set(candyType)].length, candyType.length / 2));
 };
-distributeCandies([1, 1, 2, 2, 3, 3]);
+// distributeCandies([1, 1, 2, 2, 3, 3]);
+
+/**
+ * 37. Longest Harmonious Subsequences
+ * https://leetcode.com/problems/longest-harmonious-subsequence/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLHS = function (nums) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], map.has(nums[i]) ? map.get(nums[i]) + 1 : 1);
+  }
+  let result = 0;
+  for (let i = 0; i < [...map.keys()].length; i++) {
+    if (map.has([...map.keys()][i] + 1)) {
+      result = Math.max(
+        result,
+        map.get([...map.keys()][i]) + map.get([...map.keys()][i] + 1)
+      );
+    }
+  }
+  console.log(result);
+};
+findLHS([1, 3, 2, 2, 5, 2, 3, 7]);
