@@ -1004,3 +1004,27 @@ var findLHS = function (nums) {
   console.log(result);
 };
 // findLHS([1, 3, 2, 2, 5, 2, 3, 7]);
+
+/**
+ * 38. Range Addition II
+ * https://leetcode.com/problems/range-addition-ii/
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
+ * @return {number}
+ */
+var maxCount = function (m, n, ops) {
+  let min = [m, n];
+
+  for (let i = 0; i < ops.length; i++) {
+    min[0] = Math.min(min[0], ops[i][0]);
+    min[1] = Math.min(min[1], ops[i][1]);
+  }
+  console.log(min[0] * min[1]);
+};
+
+maxCount(3, 3, [
+  [2, 2],
+  [3, 3],
+]);
+maxCount(2, 2, [[1, 1]]);
