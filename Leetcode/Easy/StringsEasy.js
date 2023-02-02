@@ -54,7 +54,52 @@ var longestCommonPrefix = function (strs) {
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {};
+var isValid = function (s) {
+  let stack = [];
+  const openings = {
+    "{": "}",
+    "(": ")",
+    "[": "]",
+  };
+  for (let i = 0; i < s.length; i++) {
+    if (openings[s[i]]) {
+      stack.push(s[i]);
+    } else if (s[i] === openings[stack.at(-1)]) {
+      stack.pop();
+    } else {
+      console.log(false);
+      return;
+    }
+  }
+  console.log(stack.length === 0 ? true : false);
+};
+
+// isValid("()[]{}");
+// isValid("]");
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function (s) {
+  console.log(s.trim().split(" ").at(-1).length);
+};
+// lengthOfLastWord("Hello World");
+// lengthOfLastWord("   fly me   to   the moon  ");
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function (a, b) {
+  let remainder = 0;
+  let res = [];
+  for (let i = Math.max(a.length, b.length) - 1; i >= 0; i--) {
+    if (a[i] === 1 && b[i] === 1) [];
+  }
+};
+addBinary("1010", "1011");
 
 /**
  * 
