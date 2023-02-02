@@ -33,7 +33,28 @@ var romanToInt = function (s) {
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function (strs) {};
+var longestCommonPrefix = function (strs) {
+  let res = "";
+  for (let i = 0; i < strs[0].length; i++) {
+    if (strs.every((str) => str[i] === strs[0][i])) {
+      res = strs[0].slice(0, i + 1);
+    } else {
+      break;
+    }
+  }
+  console.log(res);
+};
+// longestCommonPrefix(["flower", "flow", "flight"]);
+// longestCommonPrefix(["a"]);
+// longestCommonPrefix(["flower", "flower", "flower", "flower"]);
+
+/**
+ * 3. Valid Parentheses
+ * https://leetcode.com/problems/valid-parentheses/
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {};
 
 /**
  * 
