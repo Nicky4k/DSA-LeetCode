@@ -28,6 +28,14 @@ var romanToInt = function (s) {
 // romanToInt("LVIII");
 
 /**
+ * 2. Longest Common Prefix
+ * https://leetcode.com/problems/longest-common-prefix/
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {};
+
+/**
  * 
 🚨 Must Solve String Questions:
 13. Roman to Integer
