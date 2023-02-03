@@ -71,11 +71,13 @@ var isValid = function (s) {
       return;
     }
   }
+  console.log(stack);
   console.log(stack.length === 0 ? true : false);
 };
 
 // isValid("()[]{}");
 // isValid("]");
+// isValid("(()())");
 
 /**
  * 4. Length of Last Word
@@ -170,7 +172,42 @@ var convertToTitle = function (columnNumber) {
   }
   console.log(res);
 };
-convertToTitle(1);
+// convertToTitle(703643);
+
+function can_reach_end(nums) {
+  if (nums.length === 1) {
+    return true;
+  }
+  let i = 0;
+  for (i; i < nums.length; i++) {
+    i = nums[i];
+    if (i === 0) {
+      return false;
+    }
+  }
+  if (i >= nums.length) {
+    return true;
+  }
+}
+
+// console.log(can_reach_end([0]))
+// console.log(can_reach_end([5, 0, 0, 0]));
+// console.log(can_reach_end([1, 2, 3]));
+
+function deletion_distance(str1, str2) {
+  let map = new Map();
+  let res = 0;
+  for (let i = 0; i < str1.length; i++) {
+    if (!map.has(str1[i])) map.set(str1[i], true);
+  }
+  for (let i = 0; i < str2.length; i++) {
+    if (map.has(str2[i])) res++;
+  }
+  const op = str1.length - res + str2.length - res;
+  return op;
+}
+// console.log(deletion_distance("at", "cat"));
+// console.log(deletion_distance("boat", "got"));
 
 /**
  * 
