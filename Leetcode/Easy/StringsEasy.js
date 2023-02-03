@@ -78,6 +78,7 @@ var isValid = function (s) {
 // isValid("]");
 
 /**
+ * 4. Length of Last Word
  * @param {string} s
  * @return {number}
  */
@@ -93,13 +94,83 @@ var lengthOfLastWord = function (s) {
  * @return {string}
  */
 var addBinary = function (a, b) {
-  let remainder = 0;
-  let res = [];
-  for (let i = Math.max(a.length, b.length) - 1; i >= 0; i--) {
-    if (a[i] === 1 && b[i] === 1) [];
+  if (a.length > b.length) {
+    b = b.padStart(a.length, 0);
+  } else {
+    a = a.padStart(b.length, 0);
   }
+  let remainder = 0;
+  let res = "";
+  for (let i = a.length - 1; i >= 0; i--) {
+    switch (+a[i] + +b[i] + remainder) {
+      case 3:
+        {
+          res += 1;
+        }
+        break;
+      case 2:
+        {
+          res += 0;
+          remainder = 1;
+        }
+        break;
+      case 1:
+        {
+          res += 1;
+          remainder = 0;
+        }
+        break;
+      case 0:
+        {
+          res += 0;
+        }
+        break;
+    }
+  }
+  if (remainder) res += 1;
+  console.log(res.split("").reverse().join(""));
 };
-addBinary("1010", "1011");
+// addBinary("1010", "1011");
+// addBinary("11", "1");
+
+/**
+ * 5. Valid Palindrome
+ * https://leetcode.com/problems/valid-palindrome/
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  const newS = s
+    .toLowerCase()
+    .split("")
+    .filter((el) => el.match(/[a-z]|[0-9]/))
+    .join("");
+  for (let i = 0; i < newS.length / 2; i++) {
+    if (newS[i] !== newS[newS.length - 1 - i]) return false;
+  }
+  return true;
+};
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(isPalindrome("0P"));
+
+/**
+ * 6. Excel Sheet Column Title
+ * https://leetcode.com/problems/excel-sheet-column-title/
+ * @param {number} columnNumber
+ * @return {string}
+ */
+var convertToTitle = function (columnNumber) {
+  let tmp = 0;
+  let res = "";
+  while (columnNumber) {
+    tmp = columnNumber % 26;
+    if (tmp === 0) tmp = 26;
+    res = String.fromCharCode("A".charCodeAt(0) + tmp - 1) + res;
+    columnNumber = (columnNumber - tmp) / 26;
+  }
+  console.log(res);
+};
+convertToTitle(1);
 
 /**
  * 
