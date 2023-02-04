@@ -229,6 +229,7 @@ function deletion_distance(str1, str2) {
  * https://leetcode.com/problems/excel-sheet-column-number/
  * @param {string} columnTitle
  * @return {number}
+ * console.log(Math.pow(2, 0)) //1; ==> number raised to power 0 is 1.
  */
 var titleToNumber = function (columnTitle) {
   let res = 0;
