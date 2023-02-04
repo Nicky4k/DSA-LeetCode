@@ -225,6 +225,26 @@ function deletion_distance(str1, str2) {
 // console.log(deletion_distance("boat", "got"));
 
 /**
+ * 10. Excel Sheet Column Number
+ * https://leetcode.com/problems/excel-sheet-column-number/
+ * @param {string} columnTitle
+ * @return {number}
+ */
+var titleToNumber = function (columnTitle) {
+  let res = 0;
+  for (let i = columnTitle.length - 1; i >= 0; i--) {
+    res +=
+      (columnTitle[i].charCodeAt(0) - 64) *
+      Math.pow(26, columnTitle.length - 1 - i);
+  }
+  console.log(res);
+};
+// titleToNumber("ZY");
+// titleToNumber("FXSHRXW");
+// titleToNumber("AAA");
+// console.log(Math.pow(2, 0)); // number raised to power 0  = 1
+
+/**
  * 
 🚨 Must Solve String Questions:
 13. Roman to Integer
