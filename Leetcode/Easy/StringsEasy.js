@@ -51,6 +51,7 @@ var longestCommonPrefix = function (strs) {
 /**
  * 3. Valid Parentheses
  * https://leetcode.com/problems/valid-parentheses/
+ * asked in interview: Nimesa Technologies
  * @param {string} s
  * @return {boolean}
  */
@@ -91,6 +92,7 @@ var lengthOfLastWord = function (s) {
 // lengthOfLastWord("   fly me   to   the moon  ");
 
 /**
+ * 5. Add Binary
  * @param {string} a
  * @param {string} b
  * @return {string}
@@ -136,7 +138,7 @@ var addBinary = function (a, b) {
 // addBinary("11", "1");
 
 /**
- * 5. Valid Palindrome
+ * 6. Valid Palindrome
  * https://leetcode.com/problems/valid-palindrome/
  * @param {string} s
  * @return {boolean}
@@ -156,24 +158,31 @@ var isPalindrome = function (s) {
 // console.log(isPalindrome("0P"));
 
 /**
- * 6. Excel Sheet Column Title
+ * 7. Excel Sheet Column Title
  * https://leetcode.com/problems/excel-sheet-column-title/
  * @param {number} columnNumber
  * @return {string}
  */
 var convertToTitle = function (columnNumber) {
-  let tmp = 0;
-  let res = "";
-  while (columnNumber) {
-    tmp = columnNumber % 26;
-    if (tmp === 0) tmp = 26;
-    res = String.fromCharCode("A".charCodeAt(0) + tmp - 1) + res;
-    columnNumber = (columnNumber - tmp) / 26;
+  let res = [];
+  while (columnNumber > 0) {
+    res.unshift(
+      String.fromCharCode("A".charCodeAt(0) + ((columnNumber - 1) % 26))
+    );
+    columnNumber = Math.floor((columnNumber - 1) / 26);
   }
-  console.log(res);
+  console.log(res.join(""));
 };
-// convertToTitle(703643);
+// convertToTitle(28);
+// convertToTitle(701);
+// convertToTitle(26);
+// convertToTitle(2);
 
+/**
+ * 8. Jump Tiles, interview question: Nimesa Technologies
+ * @param {*} nums
+ * @returns
+ */
 function can_reach_end(nums) {
   if (nums.length === 1) {
     return true;
@@ -194,6 +203,12 @@ function can_reach_end(nums) {
 // console.log(can_reach_end([5, 0, 0, 0]));
 // console.log(can_reach_end([1, 2, 3]));
 
+/**
+ * 9. Delete to make similar words, interview question: Nimesa Technologies
+ * @param {*} str1
+ * @param {*} str2
+ * @returns
+ */
 function deletion_distance(str1, str2) {
   let map = new Map();
   let res = 0;
