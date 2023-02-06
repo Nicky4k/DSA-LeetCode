@@ -282,7 +282,35 @@ var isIsomorphic = function (s, t) {
  * @param {string} t
  * @return {boolean}
  */
-var isAnagram = function (s, t) {};
+var isAnagram = function (s, t) {
+  function alpha(str) {
+    return str.split("").sort().join("");
+  }
+  console.log(alpha(s) === alpha(t));
+};
+// isAnagram("anagram", "nagaram");
+
+function isAnagramII(s, t) {
+  let obj = {};
+  for (let i of s) {
+    if (obj[i]) {
+      obj[i] += 1;
+    } else {
+      obj[i] = 1;
+    }
+  }
+  for (let i of t) {
+    if (obj[i]) {
+      if (obj[i] === 0) return false;
+      obj[i] = obj[i] - 1;
+    } else {
+      return false;
+    }
+  }
+  console.log(Object.values(obj).every((el) => el === 0));
+}
+isAnagramII("anagram", "nagaram");
+isAnagramII("ab", "a");
 
 /**
 🚨 Must Solve String Questions:
