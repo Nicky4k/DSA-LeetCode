@@ -246,13 +246,24 @@ var titleToNumber = function (columnTitle) {
 // console.log(Math.pow(2, 0)); // number raised to power 0  = 1
 
 /**
- * 
+ * Isomorphic Strings
+ * https://leetcode.com/problems/isomorphic-strings/
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function (s, t) {
+  console.log(s, t);
+};
+isIsomorphic("egg", "add");
+
+/**
 🚨 Must Solve String Questions:
-13. Roman to Integer
-14. Longest Common Prefix
-20. Valid Parentheses
-125. Valid Palindrome
-171. Excel Sheet Column Number
+13. Roman to Integer -
+14. Longest Common Prefix -
+20. Valid Parentheses -
+125. Valid Palindrome -
+171. Excel Sheet Column Number -
 242. Valid Anagram
 344. Reverse String
 387. First Unique Character in a String
