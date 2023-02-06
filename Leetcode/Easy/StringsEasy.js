@@ -253,9 +253,36 @@ var titleToNumber = function (columnTitle) {
  * @return {boolean}
  */
 var isIsomorphic = function (s, t) {
-  console.log(s, t);
+  let map = new Map();
+  let feed = [];
+  for (let i = 0; i < s.length; i++) {
+    if (!map.has(s[i]) && !feed.includes(t[i])) {
+      map.set(s[i], t[i]);
+      feed.push(t[i]);
+    }
+  }
+  console.log(map);
+  for (let i = 0; i < t.length; i++) {
+    console.log(map.get(s[i]), t[i]);
+    if (map.get(s[i]) !== t[i]) {
+      console.log(false);
+      return;
+    }
+  }
+  console.log(true);
 };
-isIsomorphic("egg", "add");
+// isIsomorphic("egg", "add");
+// isIsomorphic("foo", "bar");
+// isIsomorphic("badc", "baba");
+
+/**
+ * Valid Anagram
+ * https://leetcode.com/problems/valid-anagram/
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function (s, t) {};
 
 /**
 🚨 Must Solve String Questions:
