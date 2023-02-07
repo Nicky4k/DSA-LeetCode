@@ -309,8 +309,16 @@ function isAnagramII(s, t) {
   }
   console.log(Object.values(obj).every((el) => el === 0));
 }
-isAnagramII("anagram", "nagaram");
-isAnagramII("ab", "a");
+// isAnagramII("anagram", "nagaram");
+// isAnagramII("ab", "a");
+
+function isAnagramIII(s, t) {
+  //solve using array of size 26 and charCodeAt
+  let charArr = new Array(26).fill(0);
+  console.log(charArr);
+}
+isAnagramIII("anagram", "nagaram");
+isAnagramIII("ab", "a");
 
 /**
 🚨 Must Solve String Questions:
