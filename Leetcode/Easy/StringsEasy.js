@@ -246,7 +246,7 @@ var titleToNumber = function (columnTitle) {
 // console.log(Math.pow(2, 0)); // number raised to power 0  = 1
 
 /**
- * Isomorphic Strings
+ * 11. Isomorphic Strings
  * https://leetcode.com/problems/isomorphic-strings/
  * @param {string} s
  * @param {string} t
@@ -276,7 +276,7 @@ var isIsomorphic = function (s, t) {
 // isIsomorphic("badc", "baba");
 
 /**
- * Valid Anagram
+ * 12. Valid Anagram
  * https://leetcode.com/problems/valid-anagram/
  * @param {string} s
  * @param {string} t
@@ -312,13 +312,52 @@ function isAnagramII(s, t) {
 // isAnagramII("anagram", "nagaram");
 // isAnagramII("ab", "a");
 
+// 13. solve using array of size 26 and charCodeAt
 function isAnagramIII(s, t) {
-  //solve using array of size 26 and charCodeAt
   let charArr = new Array(26).fill(0);
-  console.log(charArr);
+  for (let i = 0; i < s.length; i++) {
+    charArr[s.charCodeAt(i) - 97]++;
+  }
+  for (let i = 0; i < t.length; i++) {
+    charArr[t.charCodeAt(i) - 97]--;
+  }
+  console.log(charArr.every((el) => el === 0));
 }
-isAnagramIII("anagram", "nagaram");
-isAnagramIII("ab", "a");
+// isAnagramIII("rat", "car");
+
+/**
+ * 14. Binary Tree Paths
+ * https://leetcode.com/problems/binary-tree-paths/
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+
+var binaryTreePaths = function (root) {
+  if (!root) return [];
+  let result = [];
+
+  function dfs(node, currentPath) {
+    currentPath += node.val;
+    if (!node.left && !node.right) {
+      result.push(currentPath);
+    }
+    if (node.left) {
+      dfs(node.left, currentPath + "->");
+    }
+    if (node.right) {
+      dfs(node.right, currentPath + "->");
+    }
+  }
+  dfs(root, "");
+  console.log(result);
+};
+// binaryTreePaths([1, 2, 3, null, 5]);
 
 /**
 🚨 Must Solve String Questions:
