@@ -360,7 +360,7 @@ var binaryTreePaths = function (root) {
 // binaryTreePaths([1, 2, 3, null, 5]);
 
 /**
- * Word Pattern
+ * 15. Word Pattern
  * https://leetcode.com/problems/word-pattern/
  * @param {string} pattern
  * @param {string} s
@@ -384,6 +384,7 @@ var wordPattern = function (pattern, s) {
 // wordPattern("abba", "dog cat cat fish");
 // wordPattern("abba", "dog dog dog dog");
 
+// 16. Fast approach Word pattern
 function wordPatternII(pattern, s) {
   const sArr = s.split(" ");
   if (pattern.length !== sArr.length) return false;
@@ -400,9 +401,41 @@ function wordPatternII(pattern, s) {
   }
   return true;
 }
-console.log(wordPatternII("abba", "dog dog dog dog"));
-console.log(wordPatternII("abba", "dog cat cat dog"));
-console.log(wordPatternII("abba", "dog cat cat fish"));
+// console.log(wordPatternII("abba", "dog dog dog dog"));
+// console.log(wordPatternII("abba", "dog cat cat dog"));
+// console.log(wordPatternII("abba", "dog cat cat fish"));
+
+/**
+ * 17. Reverse String
+ * https://leetcode.com/problems/reverse-string/
+ * @param {character[]} s
+ * @return {void} Do not return anything, modify s in-place instead.
+ */
+var reverseString = function (s) {
+  for (let i = 0; i < s.length / 2; i++) {
+    const rev = s[s.length - 1 - i];
+    s[s.length - 1 - i] = s[i];
+    s[i] = rev;
+  }
+  console.log(s);
+};
+// reverseString(["h", "e", "l", "l", "o"]); // ['o', 'l', 'l', 'e', 'h']
+// reverseString(["H", "a", "n", "n", "a", "h"]);
+
+function reverseStringWhile(s) {
+  let l = 0;
+  let r = s.length - 1;
+  while (l < r) {
+    const t = s[l];
+    s[l] = s[r];
+    s[r] = t;
+    l++;
+    r--;
+  }
+  console.log(s);
+}
+reverseStringWhile(["h", "e", "l", "l", "o"]); // ['o', 'l', 'l', 'e', 'h']
+reverseStringWhile(["H", "a", "n", "n", "a", "h"]);
 
 /**
 🚨 Must Solve String Questions:
