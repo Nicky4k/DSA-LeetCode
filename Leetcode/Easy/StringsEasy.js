@@ -366,7 +366,43 @@ var binaryTreePaths = function (root) {
  * @param {string} s
  * @return {boolean}
  */
-var wordPattern = function (pattern, s) {};
+var wordPattern = function (pattern, s) {
+  const sArr = s.split(" ");
+  if (pattern.length !== sArr.length) return false;
+  let map = new Map();
+  for (let i = 0; i < pattern.length; i++) {
+    if (!map.has(pattern[i])) {
+      if ([...map.values()].includes(sArr[i])) console.log(false);
+      map.set(pattern[i], sArr[i]);
+    } else {
+      if (map.get(pattern[i]) !== sArr[i]) console.log(false);
+    }
+  }
+  console.log(true);
+};
+// wordPattern("abba", "dog cat cat dog");
+// wordPattern("abba", "dog cat cat fish");
+// wordPattern("abba", "dog dog dog dog");
+
+function wordPatternII(pattern, s) {
+  const sArr = s.split(" ");
+  if (pattern.length !== sArr.length) return false;
+
+  let patternMap = new Map();
+  let stringMap = new Map();
+
+  for (let i = 0; i < pattern.length; i++) {
+    if (!patternMap.has(pattern[i])) patternMap.set(pattern[i], sArr[i]);
+    if (!stringMap.has(sArr[i])) stringMap.set(sArr[i], pattern[i]);
+
+    if (pattern[i] !== stringMap.get(sArr[i])) return false;
+    if (patternMap.get(pattern[i]) !== sArr[i]) return false;
+  }
+  return true;
+}
+console.log(wordPatternII("abba", "dog dog dog dog"));
+console.log(wordPatternII("abba", "dog cat cat dog"));
+console.log(wordPatternII("abba", "dog cat cat fish"));
 
 /**
 🚨 Must Solve String Questions:
