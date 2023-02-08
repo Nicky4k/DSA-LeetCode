@@ -360,6 +360,15 @@ var binaryTreePaths = function (root) {
 // binaryTreePaths([1, 2, 3, null, 5]);
 
 /**
+ * Word Pattern
+ * https://leetcode.com/problems/word-pattern/
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+var wordPattern = function (pattern, s) {};
+
+/**
 🚨 Must Solve String Questions:
 13. Roman to Integer -
 14. Longest Common Prefix -
