@@ -422,6 +422,7 @@ var reverseString = function (s) {
 // reverseString(["h", "e", "l", "l", "o"]); // ['o', 'l', 'l', 'e', 'h']
 // reverseString(["H", "a", "n", "n", "a", "h"]);
 
+// 18. Reverse String using While
 function reverseStringWhile(s) {
   let l = 0;
   let r = s.length - 1;
@@ -434,7 +435,8 @@ function reverseStringWhile(s) {
   }
   console.log(s);
 }
-reverseStringWhile(["h", "e", "l", "l", "o"]); // ['o', 'l', 'l', 'e', 'h']
+reverseStringWhile(["h", "e", "l", "l", "o"]);
+// ['o', 'l', 'l', 'e', 'h']
 reverseStringWhile(["H", "a", "n", "n", "a", "h"]);
 
 /**
