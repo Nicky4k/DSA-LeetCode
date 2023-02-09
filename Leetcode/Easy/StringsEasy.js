@@ -501,6 +501,54 @@ var canConstruct = function (ransomNote, magazine) {
 // canConstruct("a", "b");
 
 /**
+ * 21. First Unique Character in a String
+ * https://leetcode.com/problems/first-unique-character-in-a-string/
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function (s) {
+  let map = new Map();
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) {
+      map.set(s[i], map.get(s[i]) + 1);
+    } else {
+      if (s.lastIndexOf(s[i]) === i) {
+        console.log(i);
+        return;
+      }
+      map.set(s[i], 1);
+    }
+  }
+};
+// firstUniqChar("loveleetcode");
+// firstUniqChar("aabb");
+
+/**
+ * 22. Find the Difference
+ * https://leetcode.com/problems/find-the-difference/
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function (s, t) {
+  let arr = new Array(26).fill(0);
+  for (let i = 0; i < s.length; i++) {
+    arr[s.charCodeAt(i) - 97]++;
+  }
+  for (let i = 0; i < t.length; i++) {
+    arr[t.charCodeAt(i) - 97]--;
+  }
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < 0) {
+      console.log(String.fromCharCode(i + 97));
+      return;
+    }
+  }
+};
+findTheDifference("abcd", "abcde");
+findTheDifference("a", "aa");
+
+/**
 🚨 Must Solve String Questions:
 13. Roman to Integer -
 14. Longest Common Prefix -
