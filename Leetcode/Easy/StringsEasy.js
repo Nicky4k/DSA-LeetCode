@@ -449,28 +449,56 @@ function reverseStringWhile(s) {
  * Output: "leotcede"
  */
 var reverseVowels = function (s) {
-  const sArr = s.split("");
+  s = s.split("");
   const vowels = "aeiou";
   let l = 0;
   let r = s.length - 1;
   while (l < r) {
     if (
-      vowels.includes(sArr[l].toLowerCase()) &&
-      vowels.includes(sArr[r].toLowerCase())
+      vowels.includes(s[l].toLowerCase()) &&
+      vowels.includes(s[r].toLowerCase())
     ) {
-      let temp = sArr[l];
-      sArr[l] = sArr[r];
-      sArr[r] = temp;
+      let temp = s[l];
+      s[l] = s[r];
+      s[r] = temp;
       l++;
       r--;
     } else {
-      if (!vowels.includes(sArr[l].toLowerCase())) l++;
-      if (!vowels.includes(sArr[r].toLowerCase())) r--;
+      if (!vowels.includes(s[l].toLowerCase())) l++;
+      if (!vowels.includes(s[r].toLowerCase())) r--;
     }
   }
-  console.log(sArr.join(""));
+  console.log(s.join(""));
 };
 // reverseVowels("leetcode");
+
+/**
+ * 20. Ransom Note
+ * https://leetcode.com/problems/ransom-note/
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
+  let map = new Map();
+  for (let i = 0; i < magazine.length; i++) {
+    if (map.has(magazine[i])) {
+      map.set(magazine[i], map.get(magazine[i]) + 1);
+    } else {
+      map.set(magazine[i], 1);
+    }
+  }
+  for (let i = 0; i < ransomNote.length; i++) {
+    if (map.has(ransomNote[i]) > 0) {
+      map.set(ransomNote[i], map.get(ransomNote[i]) - 1);
+    } else {
+      console.log(false);
+      return;
+    }
+  }
+  console.log(true);
+};
+// canConstruct("a", "b");
 
 /**
 🚨 Must Solve String Questions:
