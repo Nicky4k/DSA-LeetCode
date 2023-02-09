@@ -435,9 +435,42 @@ function reverseStringWhile(s) {
   }
   console.log(s);
 }
-reverseStringWhile(["h", "e", "l", "l", "o"]);
-// ['o', 'l', 'l', 'e', 'h']
-reverseStringWhile(["H", "a", "n", "n", "a", "h"]);
+// reverseStringWhile(["h", "e", "l", "l", "o"]);
+//  ['o', 'l', 'l', 'e', 'h']
+// reverseStringWhile(["H", "a", "n", "n", "a", "h"]);
+
+/**
+ * 19. Reverse Vowels of a String
+ * https://leetcode.com/problems/reverse-vowels-of-a-string/
+ * @param {string} s
+ * @return {string}
+ *
+ * Input: s = "leetcode"
+ * Output: "leotcede"
+ */
+var reverseVowels = function (s) {
+  const sArr = s.split("");
+  const vowels = "aeiou";
+  let l = 0;
+  let r = s.length - 1;
+  while (l < r) {
+    if (
+      vowels.includes(sArr[l].toLowerCase()) &&
+      vowels.includes(sArr[r].toLowerCase())
+    ) {
+      let temp = sArr[l];
+      sArr[l] = sArr[r];
+      sArr[r] = temp;
+      l++;
+      r--;
+    } else {
+      if (!vowels.includes(sArr[l].toLowerCase())) l++;
+      if (!vowels.includes(sArr[r].toLowerCase())) r--;
+    }
+  }
+  console.log(sArr.join(""));
+};
+// reverseVowels("leetcode");
 
 /**
 🚨 Must Solve String Questions:
