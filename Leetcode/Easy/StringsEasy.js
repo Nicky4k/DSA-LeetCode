@@ -545,8 +545,8 @@ var findTheDifference = function (s, t) {
     }
   }
 };
-findTheDifference("abcd", "abcde");
-findTheDifference("a", "aa");
+// findTheDifference("abcd", "abcde");
+// findTheDifference("a", "aa");
 
 /**
 🚨 Must Solve String Questions:
