@@ -549,6 +549,107 @@ var findTheDifference = function (s, t) {
 // findTheDifference("a", "aa");
 
 /**
+ * 23. Is Subsequence
+ * https://leetcode.com/problems/is-subsequence/
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function (s, t) {
+  let idx = 0;
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] === s[idx]) {
+      idx++;
+    }
+  }
+  console.log(idx === s.length);
+};
+// isSubsequence("abc", "ahbgdc");
+// isSubsequence("axc", "ahbgdc");
+
+/**
+ * 24. Longest Palindrome
+ * https://leetcode.com/problems/longest-palindrome/
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindrome = function (s) {
+  let map = new Map();
+  for (let i = 0; i < s.length; i++) {
+    if (!map.has(s[i])) {
+      map.set(s[i], 1);
+    } else {
+      map.set(s[i], map.get(s[i]) + 1);
+    }
+  }
+  const values = [...map.values()];
+  const res = values.reduce(
+    (acc, val, i) => {
+      if (val % 2 === 0) {
+        acc.evenSum += val;
+      } else {
+        if (acc.oddNotTaken) {
+          acc.evenSum += val;
+          acc.oddNotTaken = false;
+        } else {
+          acc.evenSum += val - 1;
+        }
+      }
+      return acc;
+    },
+    {
+      evenSum: 0,
+      oddNotTaken: true,
+    }
+  );
+  console.log(res.evenSum);
+};
+// longestPalindrome("abccccdd");
+// longestPalindrome(
+//   "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"
+// );
+
+/**
+ * 25. Fizz Buzz
+ * https://leetcode.com/problems/fizz-buzz/
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n, buzz = []) {
+  if (n === 0) {
+    console.log(buzz);
+    return;
+  }
+  if (n % 3 === 0 && n % 5 === 0) {
+    fizzBuzz(n - 1, ["FizzBuzz", ...buzz]);
+  } else if (n % 3 === 0) {
+    fizzBuzz(n - 1, ["Fizz", ...buzz]);
+  } else if (n % 5 === 0) {
+    fizzBuzz(n - 1, ["Buzz", ...buzz]);
+  } else {
+    fizzBuzz(n - 1, [n.toString(), ...buzz]);
+  }
+};
+// fizzBuzz(3);
+// fizzBuzz(15);
+
+function fizzBuzzConcat(n) {
+  let res = [];
+  for (let i = 1; i <= n; i++) {
+    let str = "";
+    if (i % 3 === 0) str += "Fizz";
+    if (i % 5 === 0) str += "Buzz";
+
+    if (!str) str = i.toString();
+
+    res.push(str);
+  }
+  console.log(res);
+}
+fizzBuzzConcat(3);
+fizzBuzzConcat(15);
+
+/**
 🚨 Must Solve String Questions:
 13. Roman to Integer -
 14. Longest Common Prefix -
