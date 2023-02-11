@@ -646,8 +646,8 @@ function fizzBuzzConcat(n) {
   }
   console.log(res);
 }
-fizzBuzzConcat(3);
-fizzBuzzConcat(15);
+// fizzBuzzConcat(3);
+// fizzBuzzConcat(15);
 
 /**
 🚨 Must Solve String Questions:
