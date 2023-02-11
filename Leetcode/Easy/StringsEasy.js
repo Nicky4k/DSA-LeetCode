@@ -650,6 +650,61 @@ function fizzBuzzConcat(n) {
 // fizzBuzzConcat(15);
 
 /**
+ * 26. Add Strings
+ * https://leetcode.com/problems/add-strings/
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+var addStrings = function (num1, num2) {
+  let carry = 0;
+  let res = [];
+  let i = num1.length - 1;
+  let j = num2.length - 1;
+  if (i > j) {
+    num2 = "0".repeat(i - j) + num2;
+  } else if (j > i) {
+    num1 = "0".repeat(j - i) + num1;
+  }
+
+  for (let i = num1.length - 1; i >= 0; i--) {
+    let temp = (+num1[i] + +num2[i] + carry) % 10;
+    carry = parseInt((+num1[i] + +num2[i] + carry) / 10);
+    res.unshift(temp);
+  }
+  res = carry ? [carry, ...res] : res;
+
+  console.log(res.join(""));
+};
+
+// addStrings("88", "122");
+// addStrings("1", "9");
+// addStrings("9333852702227987", "85731737104263");
+
+/**
+ * 27. Number of Segments in a String
+ * https://leetcode.com/problems/number-of-segments-in-a-string/
+ * @param {string} s
+ * @return {number}
+ */
+var countSegments = function (s) {
+  console.log(s.split(" ").length);
+  if (s.length === 0) return 0;
+  let segment = 0;
+  let flip = false;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === " " && flip) {
+      segment++;
+    } else if (s[i] !== " ") {
+      flip = true;
+    }
+  }
+  console.log(segment);
+};
+countSegments("Hello, my name is John");
+countSegments("                ");
+
+/**
 🚨 Must Solve String Questions:
 13. Roman to Integer -
 14. Longest Common Prefix -
@@ -661,7 +716,7 @@ function fizzBuzzConcat(n) {
 387. First Unique Character in a String
 412. Fizz Buzz
 
-🚨 Premium questions Leetcode:
+🟡 Premium questions Leetcode: MUST DO 🟡
 1626. Best Team With No Conflicts
 157. Read N Characters Given Read
 243. Shortest Word Distance
