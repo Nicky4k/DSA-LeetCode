@@ -701,7 +701,7 @@ var countSegments = function (s) {
   }
   console.log(segment);
 };
-countSegments("Hello, my name is John");
+// countSegments("Hello, my name is John");
 countSegments("                ");
 
 /**
