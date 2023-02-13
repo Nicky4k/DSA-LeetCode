@@ -688,21 +688,53 @@ var addStrings = function (num1, num2) {
  * @return {number}
  */
 var countSegments = function (s) {
-  console.log(s.split(" ").length);
-  if (s.length === 0) return 0;
   let segment = 0;
-  let flip = false;
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === " " && flip) {
-      segment++;
-    } else if (s[i] !== " ") {
-      flip = true;
-    }
+    if (s[i] !== " " && s[i + 1] === " ") segment++;
+    if (i === s.length - 1 && s[i] !== " ") segment++;
   }
   console.log(segment);
 };
 // countSegments("Hello, my name is John");
-countSegments("                ");
+// countSegments("                ");
+
+/**
+ * 28. Repeated Substring Pattern
+ * https://leetcode.com/problems/repeated-substring-pattern/
+ * @param {string} s
+ * @return {boolean}
+ */
+var repeatedSubstringPattern = function (s) {
+  const size = s.length;
+  for (let i = parseInt(size / 2); i > 0; i--) {
+    if (size % i === 0) {
+      console.log(s.slice(0, i).repeat(size / i), s, i);
+      if (s.slice(0, i).repeat(size / i) === s) {
+        console.log(true);
+        return;
+      }
+    }
+  }
+  console.log(false);
+};
+// repeatedSubstringPattern("abab");
+// repeatedSubstringPattern("aba");
+// repeatedSubstringPattern("abcabcabcabc");
+repeatedSubstringPattern("abaababaab");
+repeatedSubstringPattern("babbabbabbabbab");
+
+// 29. Display 1 to 5 using var in interval of 1 second
+function displaySeriesUsingCosures() {
+  for (var i = 1; i <= 5; i++) {
+    function display(i) {
+      setTimeout(() => {
+        console.log(i);
+      }, 1000 * i);
+    }
+    display(i);
+  }
+}
+// displaySeriesUsingCosures();
 
 /**
 🚨 Must Solve String Questions:
