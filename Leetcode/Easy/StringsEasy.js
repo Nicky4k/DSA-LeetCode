@@ -720,8 +720,8 @@ var repeatedSubstringPattern = function (s) {
 // repeatedSubstringPattern("abab");
 // repeatedSubstringPattern("aba");
 // repeatedSubstringPattern("abcabcabcabc");
-repeatedSubstringPattern("abaababaab");
-repeatedSubstringPattern("babbabbabbabbab");
+// repeatedSubstringPattern("abaababaab");
+// repeatedSubstringPattern("babbabbabbabbab");
 
 // 29. Display 1 to 5 using var in interval of 1 second
 function displaySeriesUsingCosures() {
@@ -735,6 +735,31 @@ function displaySeriesUsingCosures() {
   }
 }
 // displaySeriesUsingCosures();
+
+/**
+ * 30. License Key Formatting
+ * https://leetcode.com/problems/license-key-formatting/
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var licenseKeyFormatting = function (s, k) {
+  let res = [];
+  const str = s.toUpperCase().split("-").join("").split("").reverse().join("");
+  for (let i = 0; i < str.length; i += k) {
+    res.push(str.slice(i, i + k));
+  }
+  console.log(
+    res
+      .map((el) => el.split("").reverse().join(""))
+      .reverse()
+      .join("-")
+  );
+};
+// licenseKeyFormatting("5F3Z-2e-9-w", 4);
+// licenseKeyFormatting("2-5g-3-J", 2);
+// licenseKeyFormatting("2-4A0r7-4k", 4);
+// licenseKeyFormatting("2-4A0r7-4k", 3);
 
 /**
 🚨 Must Solve String Questions:
