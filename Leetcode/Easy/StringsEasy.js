@@ -807,9 +807,71 @@ var detectCapitalUse = function (word) {
  * @return {number}
  */
 var findLUSlength = function (a, b) {
-  // console.log(a, b);
+  if (a === b) return -1;
+  let aMax = a.length;
+  let bMax = b.length;
+  if (a.includes(b)) aMax -= bMax;
+  if (b.includes(a)) bMax -= aMax;
+  return aMax > bMax ? aMax : bMax;
 };
-findLUSlength("aba", "cdc");
+// console.log(findLUSlength("aba", "cdc"));
+// console.log(findLUSlength("aefawfawfawfaw", "aefawfeawfwafwaef"));
+
+/**
+ * 33. Reverse String II
+ * https://leetcode.com/problems/reverse-string-ii/
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function (s, k) {
+  let arr = s.split("");
+  for (let i = 0; i < s.length; i += 2 * k) {
+    let start = i;
+    let end = Math.min(i + k - 1, s.length - 1);
+    for (let j = i; j < end; j++) {
+      let temp = arr[j];
+      arr[j] = arr[end];
+      arr[end] = temp;
+      end--;
+    }
+  }
+
+  console.log(arr.join(""));
+};
+// reverseStr("abcdefg", 2);
+
+/**
+ * 34. Student Attendance Record I
+ * https://leetcode.com/problems/student-attendance-record-i/
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkRecord = function (s) {
+  let register = {
+    A: 0,
+    L: true,
+  };
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "A") register.A++;
+  }
+  if (s.includes("LLL")) register.L = false;
+
+  console.log(register.A < 2 && register.L ? true : false);
+};
+// checkRecord("PPALLP");
+// checkRecord("PPALLL");
+
+/**
+ * 35. Reverse Words in a String III
+ * https://leetcode.com/problems/reverse-words-in-a-string-iii/
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function (s) {
+  console.log(s);
+};
+reverseWords("Let's take LeetCode contest");
 
 /**
 🚨 Must Solve String Questions:
