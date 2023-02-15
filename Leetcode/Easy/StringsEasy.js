@@ -762,6 +762,56 @@ var licenseKeyFormatting = function (s, k) {
 // licenseKeyFormatting("2-4A0r7-4k", 3);
 
 /**
+ * 31. Detect Capital
+ * https://leetcode.com/problems/detect-capital/
+ * @param {string} word
+ * @return {boolean}
+ */
+var detectCapitalUse = function (word) {
+  if (word.length < 2) return true;
+  if (word[0] !== word[0].toUpperCase()) {
+    for (let i = 1; i < word.length; i++) {
+      if (word[i] !== word[i].toLowerCase()) {
+        console.log(false);
+        return;
+      }
+    }
+  } else {
+    if (word[1] !== word[1].toUpperCase()) {
+      for (let i = 2; i < word.length; i++) {
+        if (word[i] !== word[i].toLowerCase()) {
+          console.log(false);
+          return;
+        }
+      }
+    } else {
+      for (let i = 2; i < word.length; i++) {
+        if (word[i] !== word[i].toUpperCase()) {
+          console.log(false);
+          return;
+        }
+      }
+    }
+  }
+  console.log(true);
+};
+// detectCapitalUse("USA");
+// detectCapitalUse("FlaG");
+// detectCapitalUse("Leetcode");
+
+/**
+ * 32. Longest Uncommon Subsequence I
+ * https://leetcode.com/problems/longest-uncommon-subsequence-i/
+ * @param {string} a
+ * @param {string} b
+ * @return {number}
+ */
+var findLUSlength = function (a, b) {
+  // console.log(a, b);
+};
+findLUSlength("aba", "cdc");
+
+/**
 🚨 Must Solve String Questions:
 13. Roman to Integer -
 14. Longest Common Prefix -
