@@ -869,7 +869,12 @@ var checkRecord = function (s) {
  * @return {string}
  */
 var reverseWords = function (s) {
-  console.log(s);
+  console.log(
+    s
+      .split(" ")
+      .map((el) => el.split("").reverse().join(""))
+      .join(" ")
+  );
 };
 reverseWords("Let's take LeetCode contest");
 
