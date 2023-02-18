@@ -39,12 +39,41 @@ var inorderTraversal = function (root) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function (root) {};
+var isSymmetric = function (root) {
+  if (root === null) return true;
+
+  function isMirror(left, right) {
+    if (left === null && right === null) return true;
+    if (left === null || right === null) return false;
+    return (
+      left.val === right.val &&
+      isMirror(left.left, right.right) &&
+      isMirror(left.right && right.left)
+    );
+  }
+
+  isMirror(root.left, root.right);
+};
+
+var isSymmetric = function (root) {
+  if (root == null) return true;
+  return isMirror(root.left, root.right);
+};
+
+const isMirror = (leftNode, rightNode) => {
+  if (leftNode == null && rightNode == null) return true;
+  if (leftNode == null || rightNode == null) return false;
+  if (leftNode.val !== rightNode.val) return false;
+
+  return (
+    isMirror(leftNode.left, rightNode.right) &&
+    isMirror(leftNode.right, rightNode.left)
+  );
+};
 
 /**
- * 🚨 DEPTH FIRST SEARCH
- * 🚨 BREADTH FIRST SEARCH
- * 
+ 🚨 DEPTH FIRST SEARCH
+ 🚨 BREADTH FIRST SEARCH 
 94. Binary Tree Inorder Traversal
 101. Symmetric Tree
 104. Maximum Depth of Binary Tree
