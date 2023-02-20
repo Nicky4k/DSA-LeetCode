@@ -116,6 +116,7 @@ const depthTracker = (node, depth) => {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+//1. Tail to Head
 var invertTree = function (root) {
   if (root === null) return null;
   return flipTree(root);
@@ -130,6 +131,25 @@ const flipTree = (node) => {
   const temp = node.left;
   node.left = node.right;
   node.right = temp;
+
+  return node;
+};
+
+// 2. Head to Tail
+var invertTreeII = function (root) {
+  if (root === null) return null;
+  return flipTree(root);
+};
+
+const flipTreeII = (node) => {
+  if (node === null) return;
+
+  let temp = node.left;
+  node.left = node.right;
+  node.right = temp;
+
+  flipTreeII(node.left);
+  flipTreeII(node.right);
 
   return node;
 };
