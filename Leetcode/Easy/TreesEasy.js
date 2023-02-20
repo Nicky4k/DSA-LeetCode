@@ -72,6 +72,8 @@ const isMirror = (leftNode, rightNode) => {
 };
 
 /**
+ * 3. Maximum Depth of Binary Tree
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -83,7 +85,22 @@ const isMirror = (leftNode, rightNode) => {
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function (root) {};
+var maxDepth = function (root) {
+  if (root === null) return 0;
+  let depth = 0;
+
+  return depthTracker(root, depth);
+};
+
+const depthTracker = (node, depth) => {
+  if (node === null) return depth;
+
+  depth++;
+  let leftDepth = depthTracker(node.left, depth);
+  let rightDepth = depthTracker(node.right, depth);
+
+  return leftDepth > rightDepth ? leftDepth : rightDepth;
+};
 
 /**
  🚨 DEPTH FIRST SEARCH
