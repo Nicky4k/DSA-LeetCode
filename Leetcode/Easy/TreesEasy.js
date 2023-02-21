@@ -168,7 +168,18 @@ const flipTreeII = (node) => {
  * @param {TreeNode} root
  * @return {number}
  */
-var diameterOfBinaryTree = function (root) {};
+var diameterOfBinaryTree = function (root) {
+  if (root === null) return 0;
+  let dia = 0;
+  const diameter = calcDia(root.left, dia) + calcDia(root.right, dia);
+  return diameter;
+};
+
+const calcDia = (node, dia) => {
+  if (node === null) return dia;
+  dia++;
+  return Math.max(calcDia(node.left, dia), calcDia(node.right, dia));
+};
 
 /**
  🚨 DEPTH FIRST SEARCH
