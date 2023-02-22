@@ -168,18 +168,40 @@ const flipTreeII = (node) => {
  * @param {TreeNode} root
  * @return {number}
  */
+
 var diameterOfBinaryTree = function (root) {
-  if (root === null) return 0;
-  let dia = 0;
-  const diameter = calcDia(root.left, dia) + calcDia(root.right, dia);
-  return diameter;
+  if (!root) return 0;
+
+  let max = 0;
+
+  const dfs = (node) => {
+    if (!node) return 0;
+
+    let left = dfs(node.left);
+    let right = dfs(node.right);
+
+    max = Math.max(left + right, max);
+
+    return Math.max(left, right) + 1; // +1 for the current node we are at;
+  };
+
+  dfs(root);
+  return max;
 };
 
-const calcDia = (node, dia) => {
-  if (node === null) return dia;
-  dia++;
-  return Math.max(calcDia(node.left, dia), calcDia(node.right, dia));
-};
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var tree2str = function (root) {};
 
 /**
  🚨 DEPTH FIRST SEARCH
