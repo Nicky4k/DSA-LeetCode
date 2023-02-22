@@ -190,6 +190,8 @@ var diameterOfBinaryTree = function (root) {
 };
 
 /**
+ * https://leetcode.com/problems/construct-string-from-binary-tree/
+ * Construct String from Binary Tree
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -201,7 +203,24 @@ var diameterOfBinaryTree = function (root) {
  * @param {TreeNode} root
  * @return {string}
  */
-var tree2str = function (root) {};
+var tree2str = function (root) {
+  if (!root) return root;
+
+  function createString(node) {
+    if (!node) return;
+
+    let leftStr = createString(node.left);
+    let rightStr = createString(node.right);
+
+    let children = "";
+    if (leftStr && rightStr) children = `(${leftStr})(${rightStr})`;
+    if (leftStr && !rightStr) children = `(${leftStr})`;
+    if (!leftStr && rightStr) children = `()(${rightStr})`;
+
+    const str = `${node.val}${children}`;
+    return str;
+  }
+};
 
 /**
  🚨 DEPTH FIRST SEARCH
