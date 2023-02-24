@@ -190,8 +190,8 @@ var diameterOfBinaryTree = function (root) {
 };
 
 /**
+ * 6. Construct String from Binary Tree
  * https://leetcode.com/problems/construct-string-from-binary-tree/
- * Construct String from Binary Tree
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -225,7 +225,7 @@ var tree2str = function (root) {
 };
 
 /**
- * Binary Tree Preorder Traversal
+ * 7. Binary Tree Preorder Traversal
  * https://leetcode.com/problems/binary-tree-preorder-traversal/
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -248,6 +248,37 @@ var preorderTraversal = function (root) {
     traverse(node.left);
     traverse(node.right);
   }
+  traverse(root);
+  return res;
+};
+
+/**
+ * 8. Binary Tree Postorder Traversal
+ * https://leetcode.com/problems/binary-tree-postorder-traversal/
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal = function (root) {
+  if (!root) return [];
+
+  let res = [];
+
+  function traverse(node) {
+    if (!node) return;
+
+    traverse(node.left);
+    traverse(node.right);
+    res.push(node.val);
+  }
+
   traverse(root);
   return res;
 };
