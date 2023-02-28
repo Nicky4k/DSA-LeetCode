@@ -71,9 +71,29 @@ var productExceptSelf = function (nums) {
   }
   return res;
 };
-productExceptSelf([1, 2, 3, 4]);
-productExceptSelf([-1, 1, 0, -3, 3]);
-productExceptSelf([0, 0]);
+// productExceptSelf([1, 2, 3, 4]);
+// productExceptSelf([-1, 1, 0, -3, 3]);
+// productExceptSelf([0, 0]);
+
+/**
+ * 5. Maximum Subarray
+ * https://leetcode.com/problems/maximum-subarray/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function (nums) {
+  let n = nums.length;
+  let maxSum = nums[0];
+  let currSum = 0;
+  for (let i = 0; i < n; i++) {
+    currSum = Math.max(0, currSum) + nums[i];
+    maxSum = Math.max(maxSum, currSum);
+  }
+  console.log(maxSum);
+};
+maxSubArray([5, 4, -1, 7, 8]);
+// maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
+
 /**
  * 
 🚨 Array
