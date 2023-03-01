@@ -91,8 +91,16 @@ var maxSubArray = function (nums) {
   }
   console.log(maxSum);
 };
-maxSubArray([5, 4, -1, 7, 8]);
+// maxSubArray([5, 4, -1, 7, 8]);
 // maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
+
+/**
+ * Find Minimum in Rotated Sorted Array
+ * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function (nums) {};
 
 /**
  * 
@@ -101,7 +109,7 @@ maxSubArray([5, 4, -1, 7, 8]);
 2. Best Time to Buy and Sell Stock
 3. Contains Duplicate
 4. Product of Array Except Self
-5. Maximum Subarray
+5. Maximum Subarray 🚨
 6. Maximum Product Subarray
 7. Find Minimum in Rotated Sorted Array
 8. Search in Rotated Sorted Array
