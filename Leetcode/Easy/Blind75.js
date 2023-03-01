@@ -100,7 +100,34 @@ var maxSubArray = function (nums) {
  * @param {number[]} nums
  * @return {number}
  */
-var findMin = function (nums) {};
+var findMin = function (nums) {
+  if (nums.length === 1) return nums[0];
+  let min = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] < min) {
+      min = nums[i];
+      break;
+    }
+  }
+  return min;
+};
+// findMin([3, 4, 5, 1, 2]);
+
+/**
+ * 3Sum
+ * https://leetcode.com/problems/3sum/
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+  let map = new Map();
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], i);
+  }
+  console.log(map);
+};
+threeSum([-1, 0, 1, 2, -1, -4]);
 
 /**
  * 
