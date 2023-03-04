@@ -74,7 +74,7 @@ let audioGear = {
     );
   },
 };
-audioGear.description(new Date().toDateString());
+// audioGear.description(new Date().toDateString());
 
 let izotope = {
   brandName: "Izotope",
@@ -82,7 +82,7 @@ let izotope = {
   pluginName: ["Ozone", "Trash", "Nectar", "Imager", "VocalSynth"],
 };
 
-audioGear.description.call(izotope, new Date().toDateString());
+// audioGear.description.call(izotope, new Date().toDateString());
 
 // call polyfill
 Object.prototype.myCall = function (arg, params) {
@@ -90,26 +90,26 @@ Object.prototype.myCall = function (arg, params) {
   arg.fn = func;
   arg.fn(params);
 };
-audioGear.description.myCall(izotope, new Date().toDateString());
+// audioGear.description.myCall(izotope, new Date().toDateString());
 
 // apply polyfill
-console.log("\n");
+// console.log("\n");
 const msg = ["Warm", "Greetings", new Date().toDateString()];
-audioGear.description.apply(izotope, [msg]);
+// audioGear.description.apply(izotope, [msg]);
 
 Object.prototype.myApply = function (scope, args) {
   scope.func = this;
   scope.func(...args);
 };
-audioGear.description.myApply(izotope, [msg]);
+// audioGear.description.myApply(izotope, [msg]);
 
 // bind polyfill
-console.log("\n");
+// console.log("\n");
 const pluginDesc = audioGear.description.bind(
   izotope,
   new Date().toDateString()
 );
-pluginDesc();
+// pluginDesc();
 Object.prototype.myBind = function (scope, args) {
   if (typeof this !== "function") return new Error("please try again");
 
@@ -122,4 +122,52 @@ const pluginDescBinded = audioGear.description.myBind(
   izotope,
   new Date().toDateString()
 );
-pluginDescBinded();
+// pluginDescBinded();
+
+// Promises polyfill
+// race
+const p1 = Promise.resolve(1);
+const p2 = Promise.resolve(2);
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(3);
+  }, 200);
+});
+
+const fastP = Promise.race([p1, p2, p3]);
+// fastP.then((res) => console.log(res));
+
+Object.prototype.myRace = function (promises) {
+  for (let i = 0; i < promises.length; i++) {
+    return promises[i].then((res) => res);
+  }
+};
+const fastProm = Promise.myRace([p1, p2, p3]);
+// fastProm.then((res) => console.log(res));
+
+// all
+const allFullfilled = Promise.all([p1, p2, p3]);
+allFullfilled.then((res) => console.log(res)).catch((err) => console.log(err));
+
+const customAll = (promises) => {
+  let result = [];
+  let settledP = 0;
+  return new Promise((resolve, reject) => {
+    promises.forEach((promise, i) => {
+      promise
+        .then((value) => {
+          result[i] = value;
+          settledP++;
+          if (settledP === promises.length) {
+            resolve(result);
+          }
+        })
+        .catch(reject);
+    });
+  });
+};
+
+Promise.all = customAll;
+
+const customAllP = Promise.all([p1, p2, p3]);
+customAllP.then((res) => console.log(res)).catch((err) => console.log(err));
