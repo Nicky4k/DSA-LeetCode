@@ -58,3 +58,68 @@ Array.prototype.myForEach = function (func) {
 
 // forEachArr.myForEach(forEachFn);
 // console.log(forEachArr);
+
+let audioGear = {
+  brandName: "Universal Audio",
+  pluginsType: "VST, AU",
+  pluginName: ["Compressor", "VOX", "Limiter", "EQ"],
+  description(date) {
+    console.log(
+      `${this.brandName} makes audio plugins, and their top ${
+        this.pluginsType
+      } plugins are ${audioGear.pluginName
+        .slice(0, -1)
+        .join(", ")}, and ${this.pluginName.at(-1)}.`,
+      date
+    );
+  },
+};
+audioGear.description(new Date().toDateString());
+
+let izotope = {
+  brandName: "Izotope",
+  pluginsType: "VST, VST3, AU and AAX",
+  pluginName: ["Ozone", "Trash", "Nectar", "Imager", "VocalSynth"],
+};
+
+audioGear.description.call(izotope, new Date().toDateString());
+
+// call polyfill
+Object.prototype.myCall = function (arg, params) {
+  const func = this;
+  arg.fn = func;
+  arg.fn(params);
+};
+audioGear.description.myCall(izotope, new Date().toDateString());
+
+// apply polyfill
+console.log("\n");
+const msg = ["Warm", "Greetings", new Date().toDateString()];
+audioGear.description.apply(izotope, [msg]);
+
+Object.prototype.myApply = function (scope, args) {
+  scope.func = this;
+  scope.func(...args);
+};
+audioGear.description.myApply(izotope, [msg]);
+
+// bind polyfill
+console.log("\n");
+const pluginDesc = audioGear.description.bind(
+  izotope,
+  new Date().toDateString()
+);
+pluginDesc();
+Object.prototype.myBind = function (scope, args) {
+  if (typeof this !== "function") return new Error("please try again");
+
+  scope.func = this;
+  return function () {
+    scope.func(args);
+  };
+};
+const pluginDescBinded = audioGear.description.myBind(
+  izotope,
+  new Date().toDateString()
+);
+pluginDescBinded();

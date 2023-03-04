@@ -120,14 +120,75 @@ var findMin = function (nums) {
  * @return {number[][]}
  */
 var threeSum = function (nums) {
+  //TLE
   let map = new Map();
   let res = [];
   for (let i = 0; i < nums.length; i++) {
     map.set(nums[i], i);
   }
-  console.log(map);
+  for (let i = 0; i < nums.length - 1; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      const twoSum = nums[i] + nums[j];
+      if (
+        map.has(-1 * twoSum) &&
+        map.get(-1 * twoSum) !== i &&
+        map.get(-1 * twoSum) !== j
+      ) {
+        if (
+          !res.includes(
+            [nums[i], nums[j], twoSum === 0 ? 0 : -1 * twoSum].sort(
+              (a, b) => a - b
+            )
+          )
+        ) {
+          res.push(
+            [nums[i], nums[j], twoSum === 0 ? 0 : -1 * twoSum].sort(
+              (a, b) => a - b
+            )
+          );
+        }
+      }
+    }
+  }
+  let strRes = res.map(JSON.stringify);
+  const setRes = new Set(strRes);
+  console.log(
+    [...setRes.values()].map((set) =>
+      set
+        .slice(1, -1)
+        .split(",")
+        .map((el) => el * 1)
+    )
+  );
 };
-threeSum([-1, 0, 1, 2, -1, -4]);
+// threeSum([-1, 0, 1, 2, -1, -4]);
+
+const optimal3Sum = (nums) => {
+  let res = [];
+  if (nums.length < 3) return res;
+  nums.sort((a, b) => a - b);
+  console.log(nums);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 0) break;
+    if (i > 0 && nums[i] === nums[i - 1]) break;
+    let start = i + 1;
+    let end = nums.length - 1;
+    while (start < end) {
+      const sum = nums[i] + nums[start] + nums[end];
+      if (sum === 0) {
+        res.push([nums[i], nums[start], nums[end]]);
+        start++;
+        end--;
+      } else if (sum < 0) {
+        start++;
+      } else if (sum > 0) {
+        end--;
+      }
+    }
+  }
+  console.log(res);
+};
+// optimal3Sum([-1, 0, 1, 2, -1, -4]);
 
 /**
  * 
@@ -136,8 +197,8 @@ threeSum([-1, 0, 1, 2, -1, -4]);
 2. Best Time to Buy and Sell Stock
 3. Contains Duplicate
 4. Product of Array Except Self
-5. Maximum Subarray 🚨
-6. Maximum Product Subarray
+5. Maximum Subarray ❌
+6. Maximum Product Subarray ❌
 7. Find Minimum in Rotated Sorted Array
 8. Search in Rotated Sorted Array
 9. 3 Sum
